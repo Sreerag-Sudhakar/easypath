@@ -135,6 +135,7 @@ const addMarker = (placeDetails) => {
     const marker = new google.maps.Marker({
         position: placeDetails.geometry.location,
         map: map,
+        title: placeDetails.name
     });
     return marker;
 }
