@@ -108,9 +108,23 @@ const initAutoComplete = (textBoxElement) => {
         }
         else {
             console.log(textBoxElement.id)
-            // Plot a marker 
-            const marker = addMarker(place);
 
+            // Find and update the marker 
+            const markerFound = locations.find((location) => { return location.textBoxId === textBoxElement.id });
+
+            // Update the position
+            if (markerFound) {
+                markerFound.marker.setPosition(place.geometry.location);
+            }
+            else {
+                // Plot a new marker 
+                const marker = addMarker(place);
+                locations.push({
+                    textBoxId: textBoxElement.id,
+                    marker,
+                    place
+                })
+            }
         }
 
     })
